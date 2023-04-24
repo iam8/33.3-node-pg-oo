@@ -15,7 +15,7 @@ const router = new express.Router();
 router.get("/", async function(req, res, next) {
     try {
         const customers = await Customer.all();
-        return res.render("customer_list.html", { customers });
+        return res.render("customer_list.jinja2", { customers });
     } catch (err) {
         return next(err);
     }
@@ -25,7 +25,7 @@ router.get("/", async function(req, res, next) {
 /** Form to add a new customer. */
 router.get("/add/", async function(req, res, next) {
     try {
-        return res.render("customer_new_form.html");
+        return res.render("customer_new_form.jinja2");
     } catch (err) {
         return next(err);
     }
@@ -57,7 +57,7 @@ router.get("/:id/", async function(req, res, next) {
 
         const reservations = await customer.getReservations();
 
-        return res.render("customer_detail.html", { customer, reservations });
+        return res.render("customer_detail.jinja2", { customer, reservations });
     } catch (err) {
         return next(err);
     }
@@ -69,7 +69,7 @@ router.get("/:id/edit/", async function(req, res, next) {
     try {
         const customer = await Customer.get(req.params.id);
 
-        res.render("customer_edit_form.html", { customer });
+        res.render("customer_edit_form.jinja2", { customer });
     } catch (err) {
         return next(err);
     }

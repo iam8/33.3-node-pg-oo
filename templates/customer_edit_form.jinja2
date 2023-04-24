@@ -1,4 +1,4 @@
-{% extends 'base.html' %}
+{% extends 'base.jinja2' %}
 
 {% block title %}Edit {{ customer.firstName }} {{ customer.lastName }}{% endblock %}
 
@@ -37,5 +37,5 @@
   <button class="btn btn-primary">Add</button>
   <a href="/{{ customer.id }}/" class="btn btn-danger">Cancel</a>
 </form>
-  
+
 {% endblock %}
