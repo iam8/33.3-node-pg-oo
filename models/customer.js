@@ -1,3 +1,6 @@
+// Ioana A Mititean
+// Exercise 33.3 - Lunchly
+
 /** Customer for Lunchly */
 
 const db = require("../db");
