@@ -64,7 +64,7 @@ class Customer {
         return await Reservation.getReservationsForCustomer(this.id);
     }
 
-    /** save this customer. */
+    /** Save this customer. */
     async save() {
         if (this.id === undefined) {
             const result = await db.query(
