@@ -6,7 +6,7 @@
 const express = require("express");
 
 const { Customer } = require("./models/customer");
-const Reservation = require("./models/reservation");
+const { Reservation } = require("./models/reservation");
 
 const router = new express.Router();
 
@@ -15,6 +15,7 @@ const router = new express.Router();
 router.get("/", async function(req, res, next) {
     try {
         const customers = await Customer.all();
+
         return res.render("customer_list.jinja2", { customers });
     } catch (err) {
         return next(err);
@@ -54,7 +55,6 @@ router.post("/add/", async function(req, res, next) {
 router.get("/:id/", async function(req, res, next) {
     try {
         const customer = await Customer.get(req.params.id);
-
         const reservations = await customer.getReservations();
 
         return res.render("customer_detail.jinja2", { customer, reservations });
@@ -68,7 +68,6 @@ router.get("/:id/", async function(req, res, next) {
 router.get("/:id/edit/", async function(req, res, next) {
     try {
         const customer = await Customer.get(req.params.id);
-
         res.render("customer_edit_form.jinja2", { customer });
     } catch (err) {
         return next(err);
@@ -102,10 +101,10 @@ router.post("/:id/add-reservation/", async function(req, res, next) {
         const notes = req.body.notes;
 
         const reservation = new Reservation({
-        customerId,
-        startAt,
-        numGuests,
-        notes
+            customerId,
+            startAt,
+            numGuests,
+            notes
         });
         await reservation.save();
 
